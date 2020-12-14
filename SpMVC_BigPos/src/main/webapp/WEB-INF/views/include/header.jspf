@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<style>
+header {
+	background-color: black;
+	color: white;
+	text-align: center;
+	padding: 30px;
+}
+</style>
+
+<header>
+	<h1>쩔쩔이의 포스가 흘러넘치는 포스기 프로젝트</h1>
+	<p>성능과 퀄리티는 매우 자신있게 한마디로 나쁘다고 표현할수 있다</p>
+</header>

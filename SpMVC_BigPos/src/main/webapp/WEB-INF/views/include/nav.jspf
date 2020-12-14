@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<style>
+nav {
+	display: flex;
+}
+
+nav button {
+	flex: 1;
+	font-size: 20px;
+	font-weight: bolder;
+	background-color: gray;
+	color: white;
+	padding: 15px;
+	outline: none;
+	border: none;
+	transition: all 0.5s;
+	padding: 15px;
+}
+
+nav button:hover {
+	background-color: crimson;
+}
+</style>
+
+<nav>
+	<button id="btn_table1" type="button">홈화면</button>
+	<button id="btn_table1" type="button">매입매출 리스트</button>
+	<button id="btn_table2" type="button">거래처 리스트</button>
+	<button id="btn_table3" type="button">상품 리스트</button>
+	<button id="btn_table4" type="button">기타리스트</button>
+</nav>
+
+<script>
+	
+</script>

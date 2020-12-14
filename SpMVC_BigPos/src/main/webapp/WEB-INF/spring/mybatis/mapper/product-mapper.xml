@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.big.mapper.ProductDao">
+
+	<insert id="insert">
+		INSERT INTO tbl_product
+		p_code,
+		p_name,
+		p_item,
+		p_menuf,
+		p_dcode,
+		p_vat,
+		p_iprice,
+		p_oprice
+		VALUES (
+		#{id},
+		#{p_name},
+		#{p_item},
+		#{p_menuf},
+		#{p_dcode},
+		#{p_vat},
+		#{p_iprice},
+		#{p_oprice}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE tbl_product SET
+		p_name = #{p_name},
+		p_item = #{p_item},
+		p_menuf = #{p_menuf},
+		p_dcode = #{p_dcode},
+		p_vat = #{p_vat},
+		p_iprice = #{p_iprice},
+		p_oprice = #{p_oprice}
+		WHERE p_code = #{id}
+	</update>
+
+</mapper>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biz.big.mapper.IoDao">
+
+	<insert id="insert">
+		INSERT INTO tbl_iolist (
+		io_seq,
+		io_date,
+		io_time,
+		io_dcode,
+		io_inout,
+		io_pcode,
+		io_vat,
+		io_qty,
+		io_price,
+		io_amt,
+		io_tax,
+		io_total
+		) VALUES (
+		seq_io.NEXTVAL,
+		#{io_date},
+		#{io_time},
+		#{io_dcode},
+		#{io_inout},
+		#{io_pcode},
+		#{io_vat},
+		#{io_qty},
+		#{io_price},
+		#{io_amt},
+		#{io_tax},
+		#{io_total}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE tbl_iolist SET
+		io_date = #{io_date},
+		io_time = #{io_time},
+		io_dcode = #{io_dcode},
+		io_inout = #{io_inout},
+		io_pcode = #{io_pcode},
+		io_vat = #{io_vat},
+		io_qty = #{io_qty},
+		io_price = #{io_price},
+		io_amt = #{io_amt},
+		io_tax = #{io_tax},
+		io_total = #{io_total}
+		WHERE io_seq = #{id}
+	</update>
+
+</mapper>
