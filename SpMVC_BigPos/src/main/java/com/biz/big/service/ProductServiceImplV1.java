@@ -2,38 +2,46 @@ package com.biz.big.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.biz.big.mapper.ProductDao;
 import com.biz.big.model.ProductVO;
 
+@Service
+@Qualifier("productServV1")
 public class ProductServiceImplV1 implements ProductService{
+	
+	@Autowired
+	private ProductDao proDao;
 
 	@Override
 	public List<ProductVO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return proDao.selectAll();
 	}
 
 	@Override
 	public ProductVO findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return proDao.findById(id);
 	}
 
 	@Override
 	public int insert(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ret = proDao.insert(vo);
+		return ret;
 	}
 
 	@Override
 	public int update(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ret = proDao.update(vo);
+		return ret;
 	}
 
 	@Override
 	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ret = proDao.delete(id);
+		return ret;
 	}
 
 }

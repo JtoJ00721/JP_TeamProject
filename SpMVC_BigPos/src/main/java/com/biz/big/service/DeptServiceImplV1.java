@@ -2,38 +2,46 @@ package com.biz.big.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.biz.big.mapper.DeptDao;
 import com.biz.big.model.DeptVO;
 
+@Service
+@Qualifier("deptServV1")
 public class DeptServiceImplV1 implements DeptService {
+
+	@Autowired
+	private DeptDao deptDao;
 
 	@Override
 	public List<DeptVO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return deptDao.selectAll();
 	}
 
 	@Override
 	public DeptVO findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return deptDao.findById(id);
 	}
 
 	@Override
 	public int insert(DeptVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ret = deptDao.insert(vo);
+		return ret;
 	}
 
 	@Override
 	public int update(DeptVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ret = deptDao.update(vo);
+		return ret;
 	}
 
 	@Override
 	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ret = deptDao.delete(id);
+		return ret;
 	}
 
 }

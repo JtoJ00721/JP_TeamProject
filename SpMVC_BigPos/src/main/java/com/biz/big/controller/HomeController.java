@@ -12,4 +12,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/javascriptiswrong", method = RequestMethod.GET)
+	public String javascriptiswrong() {
+		return "javascriptiswrong";
+	}
+	
 }

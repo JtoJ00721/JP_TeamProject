@@ -36,17 +36,22 @@ html, body {
 
 	<div id="body_contents">
 		<c:choose>
-			<c:when test="${BODY == 'IO_LIST'}">
-				<%@ include file="/WEB-INF/views/io/iolist.jsp"%>
+			<c:when test="${BODY == 'IO_IN_LIST'}">
+				<%@ include file="/WEB-INF/views/io/io_in_list.jsp"%>
 			</c:when>
-						<c:when test="${BODY == 'IO_DETAIL'}">
-				<%@ include file="/WEB-INF/views/io/io_detail.jsp"%>
+			<c:when test="${BODY == 'IO_OUT_LIST'}">
+				<%@ include file="/WEB-INF/views/io/io_out_list.jsp"%>
 			</c:when>
-						<c:when test="${BODY == 'IO_INPUT'}">
-				<%@ include file="/WEB-INF/views/io/io_input.jsp"%>
+			<c:when test="${BODY == 'PRODUCT_LIST'}">
+				<%@ include file="/WEB-INF/views/product/product_list.jsp"%>
 			</c:when>
+			<c:when test="${BODY == 'DEPT_LIST'}">
+				<%@ include file="/WEB-INF/views/dept/dept_list.jsp"%>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="/WEB-INF/views/main.jsp"%>
+			</c:otherwise>
 		</c:choose>
-		<h1>내용을 구경하거나 끄적이고 싶은 리스트를 선택해 주세요</h1>
 	</div>
 
 	<%@ include file="/WEB-INF/views/include/footer.jspf"%>

@@ -7,7 +7,7 @@
 <mapper namespace="com.biz.big.mapper.ProductDao">
 
 	<insert id="insert">
-		INSERT INTO tbl_product
+		INSERT INTO tbl_product (
 		p_code,
 		p_name,
 		p_item,
@@ -16,8 +16,8 @@
 		p_vat,
 		p_iprice,
 		p_oprice
-		VALUES (
-		#{id},
+		) VALUES (
+		#{p_code},
 		#{p_name},
 		#{p_item},
 		#{p_menuf},
