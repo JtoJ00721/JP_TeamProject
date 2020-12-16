@@ -32,6 +32,8 @@ d_addr	nVARCHAR2(1300)		,
 d_product	nVARCHAR2(1300)		
 );
 
+SELECT * FROM tbl_dept;
+
 CREATE SEQUENCE seq_d
 START WITH 1 INCREMENT BY 1;
 
@@ -50,8 +52,25 @@ p_iprice	NUMBER	NOT NULL	,
 p_oprice	NUMBER	NOT NULL	
 );
 
+SELECT * FROM tbl_product;
+
 CREATE SEQUENCE seq_p
 START WITH 1 INCREMENT BY 1;
 
 DROP TABLE tbl_product;
 DROP SEQUENCE seq_p;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
