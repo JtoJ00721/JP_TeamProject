@@ -35,6 +35,15 @@
 
 #product_table td {
 	border: 1px solid black;
+	padding: 5px 0px;
+}
+
+#product_table tr {
+	transition: all 0.3s;
+}
+
+#product_table tbody tr:hover {
+	background-color: #ddd;
 }
 
 #to_pro_insert {
@@ -70,7 +79,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${PROLIST}" var="items" varStatus="i">
-					<tr>
+					<tr class="pro_item" data-id="${items.p_code}">
 						<td>${items.p_code}</td>
 						<td>${items.p_name}</td>
 						<td>${items.p_item}</td>
@@ -90,23 +99,53 @@
 </body>
 
 <script>
-	document.addEventListener("DOMContentLoaded", function() {
-		setTimeout(function() {
-			let Deep = document.querySelector("nav button:nth-child(3)");
-			let Dark = document.querySelector("nav button:nth-child(4)");
-			let Fantasy = document.querySelector("nav button:nth-child(5)");
+	document
+			.addEventListener(
+					"DOMContentLoaded",
+					function() {
 
-			Deep.style.borderRadius = "0px 0px 15px 0px";
-			Dark.style.borderRadius = "0px 0px 15px 15px";
-			Dark.style.backgroundColor = "cornflowerblue";
-			Fantasy.style.borderRadius = "0px 0px 0px 15px";
-		}, 69);
+						// 헤더와 네비 효과 스크립트 시작
+						setTimeout(function() {
+							let Deep = document
+									.querySelector("nav button:nth-child(3)");
+							let Dark = document
+									.querySelector("nav button:nth-child(4)");
+							let Fantasy = document
+									.querySelector("nav button:nth-child(5)");
 
-		let to_insert = document.querySelector("#to_pro_insert");
+							Deep.style.borderRadius = "0px 0px 15px 0px";
+							Dark.style.borderRadius = "0px 0px 15px 15px";
+							Dark.style.backgroundColor = "cornflowerblue";
+							Fantasy.style.borderRadius = "0px 0px 0px 15px";
 
-		to_insert.addEventListener("click", function() {
-			document.location.href = "${rootPath}/product/input"
-		})
-	})
+						}, 69);
+						// 헤더와 네비 효과 스크립트 끝
+
+						// 상품정보 수정창으로 이동 스크립트 시작
+						document
+								.querySelector("table#product_table")
+								.addEventListener(
+										"click",
+										function(e) {
+											let id = e.target.closest("TR").dataset.id;
+											if (confirm("상품코드 : " + id
+													+ " 의 정보를 수정할래요?")) {
+												document.location.href = "${rootPath}/product/update?id="
+														+ id;
+											}
+										})
+						// 상품정보 수정창으로 이동 스크립트 끝
+
+						// 새로운 상품추가로 이동 스크립트 시작
+						let to_insert = document
+								.querySelector("#to_pro_insert");
+						to_insert
+								.addEventListener(
+										"click",
+										function() {
+											document.location.href = "${rootPath}/product/input"
+										})
+						// 새로운 상품추가로 이동 스크립트 끝
+					})
 </script>
 </html>

@@ -16,6 +16,9 @@ public interface DeptDao extends GenericDao<DeptVO, String>{
 	@Override
 	@Select("SELECT * FROM tbl_dept WHERE d_code = #{id}")
 	public DeptVO findById(String id);
+	
+	@Select("SELECT seq_d.NEXTVAL FROM DUAL")
+	public String getNextNum();
 
 	@Override
 	@Delete("DELETE FROM tbl_dept WHERE d_code = #{id}")

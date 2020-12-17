@@ -44,4 +44,12 @@ public class ProductServiceImplV1 implements ProductService{
 		return ret;
 	}
 
+	public String getNextNum() {
+		String p_seq = (String)proDao.getNextNum();
+		long long_p_seq = Long.valueOf(p_seq);
+		
+		String return_p_seq = "P" + String.format("%012d", long_p_seq);
+		return return_p_seq;
+	}
+
 }

@@ -44,4 +44,13 @@ public class DeptServiceImplV1 implements DeptService {
 		return ret;
 	}
 
+	@Override
+	public String getNextNum() {
+		String seq = (String)deptDao.getNextNum();
+		long long_seq = Long.valueOf(seq);
+		String return_seq = "D" + String.format("%04d", long_seq);
+		
+		return return_seq;
+	}
+
 }

@@ -35,6 +35,17 @@
 
 #dept_table td {
 	border: 1px solid black;
+	padding: 5px 0px;
+}
+
+#dept_table tbody tr {
+	transition: all 0.3s;
+	cursor: pointer;
+	
+}
+
+#dept_table tbody tr:hover {
+	background-color: #ddd;
 }
 
 #to_dept_input {
@@ -91,6 +102,7 @@
 </body>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
+		// 헤더와 네비바 변화 스크립트 시작
 		setTimeout(function() {
 			let Deep = document.querySelector("nav button:nth-child(2)");
 			let Dark = document.querySelector("nav button:nth-child(3)");
@@ -101,11 +113,23 @@
 			Dark.style.backgroundColor = "cornflowerblue";
 			Fantasy.style.borderRadius = "0px 0px 0px 15px";
 		}, 69);
+		// 헤더와 네비바 변화 스크립트 끝
+		
+		// 거래처 수정창으로 환상의 여★행 스크립트 시작
+		document.querySelector("table#dept_table").addEventListener("click", function(e){
+			let id = e.target.closest("TR").dataset.id
+			if(confirm("거래처코드 : " + id + " 데이터를 수정할래요?")){
+				document.location.href = "${rootPath}/dept/update?d_code=" + id;	
+			}
+		})
+		// 거래처 수정창으로 환상의 여★행 스크립트 끝
 
+		// 거래처 추가로 이동 스크립트 시작
 		let to_insert = document.querySelector("#to_dept_input");
 		to_insert.addEventListener("click", function() {
 			document.location.href = "${rootPath}/dept/input";
 		});
+		// 거래처 추가로 이동 스크립트 끝
 	});
 </script>
 </html>

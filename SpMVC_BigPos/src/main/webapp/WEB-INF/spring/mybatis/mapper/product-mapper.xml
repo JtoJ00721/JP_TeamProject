@@ -30,14 +30,14 @@
 
 	<update id="update">
 		UPDATE tbl_product SET
-		p_name = #{p_name},
-		p_item = #{p_item},
-		p_menuf = #{p_menuf},
-		p_dcode = #{p_dcode},
-		p_vat = #{p_vat},
-		p_iprice = #{p_iprice},
-		p_oprice = #{p_oprice}
-		WHERE p_code = #{id}
+		p_name = #{p_name, jdbcType=VARCHAR},
+		p_item = #{p_item, jdbcType=VARCHAR},
+		p_menuf = #{p_menuf, jdbcType=VARCHAR},
+		p_dcode = #{p_dcode, jdbcType=VARCHAR},
+		p_vat = #{p_vat, jdbcType=VARCHAR},
+		p_iprice = #{p_iprice, jdbcType=VARCHAR},
+		p_oprice = #{p_oprice, jdbcType=VARCHAR}
+		WHERE p_code = #{p_code}
 	</update>
 
 </mapper>

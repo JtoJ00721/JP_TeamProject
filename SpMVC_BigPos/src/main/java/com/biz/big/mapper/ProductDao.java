@@ -16,6 +16,9 @@ public interface ProductDao extends GenericDao<ProductVO, String> {
 	@Override
 	@Select("SELECT * FROM tbl_product WHERE p_code = #{id}")
 	public ProductVO findById(String id);
+	
+	@Select("SELECT seq_p.NEXTVAL FROM DUAL")
+	public String getNextNum();
 
 	@Override
 	@Delete("DELETE FROM tbl_product WHERE p_code = #{id}")
