@@ -171,7 +171,7 @@
 												p_code.focus();
 												return false;
 											} else if (p_code.value.length != 13) {
-												alert("상품코드 EAN-13 바코드 구조로 띄어쓰기 없이 더도말고 덜도말고 13자! ><");
+												alert("상품코드는 EAN-13 바코드 구조로 띄어쓰기 없이 더도말고 덜도말고 13자! ><");
 												p_code.focus();
 												return false;
 											} else if (isNaN(p_code.value)) {
