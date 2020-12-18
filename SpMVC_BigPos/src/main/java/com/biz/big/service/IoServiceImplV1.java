@@ -2,8 +2,13 @@ package com.biz.big.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.biz.big.model.IoVO;
 
+@Service
+@Qualifier("ioServV1")
 public class IoServiceImplV1 implements IoService{
 
 	@Override

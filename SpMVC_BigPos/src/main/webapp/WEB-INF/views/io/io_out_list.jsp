@@ -73,6 +73,7 @@
 </body>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
+		// header nav 효과 스크립트 시작
 		setTimeout(function() {
 			let Deep = document.querySelector("nav button:first-child");
 			let Dark = document.querySelector("nav button:nth-child(2)");
@@ -83,6 +84,7 @@
 			Dark.style.backgroundColor = "cornflowerblue";
 			Fantasy.style.borderRadius = "0px 0px 0px 15px";
 		}, 69);
+		// header nav 효과 스크립트 끝
 	})
 </script>
 </html>
