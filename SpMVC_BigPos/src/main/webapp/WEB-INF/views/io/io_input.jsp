@@ -12,6 +12,43 @@
 	display: none;
 }
 
+#dept_pop {
+	display: none;
+	width: 700px;
+	height: 700px;
+	border: 5px dashed black;
+	width: 700px;
+}
+
+#io_dept_table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#io_dept_table caption {
+	font-size: 30px;
+	margin: 30px 0px;
+	font-weight: bolder;
+}
+
+#io_dept_table th {
+	padding: 8px 0px;
+}
+
+#io_dept_table td {
+	border: 1px solid black;
+	padding: 5px 0px;
+}
+
+#io_dept_table tbody tr {
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+#io_dept_table tbody tr:hover {
+	background-color: #ddd;
+}
+
 #product_pop {
 	display: none;
 	width: 700px;
@@ -20,31 +57,32 @@
 	width: 700px;
 }
 
-#pro_dept_table {
+#io_product_table {
 	width: 100%;
 	border-collapse: collapse;
 }
 
-#pro_dept_table caption {
+#io_product_table caption {
 	font-size: 30px;
 	margin: 30px 0px;
 	font-weight: bolder;
 }
 
-#pro_dept_table th {
+#io_product_table th {
 	padding: 8px 0px;
 }
 
-#pro_dept_table td {
+#io_product_table td {
 	border: 1px solid black;
 	padding: 5px 0px;
 }
 
-#pro_dept_table tbody tr {
+#io_product_table tbody tr {
+	cursor: pointer;
 	transition: all 0.3s;
 }
 
-#pro_dept_table tbody tr:hover {
+#io_product_table tbody tr:hover {
 	background-color: #ddd
 }
 </style>
@@ -73,7 +111,7 @@
 		</div>
 		<div>
 			<label>상품코드(필수) : </label>
-			<button type="button">상품선택</button>
+			<button id="p_select" type="button">상품선택</button>
 			<input class="hidden" id="io_pcode" name="io_pcode" />
 		</div>
 		<div>
@@ -103,10 +141,10 @@
 		</div>
 	</form>
 
-	<div id="product_pop">
-		<button id="close_pop" type="button">나가기</button>
+	<div id="dept_pop">
+		<button id="close_dept_pop" type="button">닫기</button>
 		<div>
-			<table id="pro_dept_table">
+			<table id="io_dept_table">
 				<caption>거래처 선택</caption>
 				<thead>
 					<tr>
@@ -134,6 +172,39 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
+
+	<div id="product_pop">
+		<button id="close_product_pop">닫기</button>
+		<table id="io_product_table">
+			<caption>상품 선택</caption>
+			<thead>
+				<tr>
+					<th>상품코드</th>
+					<th>상품명</th>
+					<th>품목</th>
+					<th>제조원</th>
+					<th>주매입처</th>
+					<th>과세구분</th>
+					<th>매입단가</th>
+					<th>판매단가</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${PROLIST}" var="items" varStatus="i">
+					<tr class="pro_item" data-id="${items.p_code}">
+						<td>${items.p_code}</td>
+						<td>${items.p_name}</td>
+						<td>${items.p_item}</td>
+						<td>${items.p_menuf}</td>
+						<td>${items.p_dcode}</td>
+						<td>${items.p_vat}</td>
+						<td>${items.p_iprice}</td>
+						<td>${items.p_oprice}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 </body>
 
@@ -168,16 +239,65 @@
 						let io_tax = document.querySelector("#io_tax");
 						let tex_show = document.querySelector("#tex_show")
 						let io_total = document.querySelector("#io_total");
+
+						let d_select = document.querySelector("#d_select");
+						let p_select = document.querySelector("#p_select");
+
+						let product_pop = document
+								.querySelector("#product_pop");
+						let dept_pop = document.querySelector("#dept_pop");
+
+						let in_or_out = document.querySelector("#in_or_out");
 						// 선택된 tag 변수들 끝
 
 						io_vat.value = 1; // 과세여부 기초설정
+						io_inout.value = 1; // 매입매출 기초설정  
+
+						// 거래처 팝업 스크립트 시작
+						d_select.addEventListener("click", function() {
+							dept_pop.style.display = "inline-block";
+						})
+						// 거래처 팝업 스크립트 끝
+
+						// 상풉 팝업 스크립트 시작
+						p_select.addEventListener("click", function() {
+							product_pop.style.display = "inline-block";
+						})
+						// 상풉 팝업 스크립트 끝
+
+						// 팝업 닫기 스크립트 시작
+						document.querySelector("#close_dept_pop")
+								.addEventListener("click", function() {
+									dept_pop.style.display = "none";
+								})
+						document.querySelector("#close_product_pop")
+								.addEventListener("click", function() {
+									product_pop.style.display = "none";
+								})
+						// 팝업 닫기 스크립트 끝
+
+						//거래처 선택 스크립트 시작
+						//거래처 선택 스크립트 끝
+
+						// 상품선택 스크립트 시작
+						// 상품선택 스크립트 끝
 
 						// 매입매출 거래구분 토글 스크립트 시작
-						let inout_toggle = 8;
-						document.querySelector("#in_or_out").addEventListener(
-								"click", function() {
-									inout_toggle = inout_toggle * -1;
-								})
+						let inout_toggle = 7;
+						document
+								.querySelector("#in_or_out")
+								.addEventListener(
+										"click",
+										function() {
+											inout_toggle = inout_toggle * -1;
+											if (inout_toggle == 7) {
+												in_or_out.innerText = "이 버튼을 클릭하지 않고 이대로 놔두면 매입으로 기록됩니다"
+												io_inout.value = 1;
+											} else if (inout_toggle == -7) {
+												in_or_out.innerText = "이 버튼을 클릭하지 않고 이대로 놔두면 매출로 기록됩니다"
+												io_inout.value = 2;
+											}
+										})
 						// 매입매출 거래구분 토글 스크립트 끝
 
 						// 저장버튼 스크립트 시작
@@ -187,6 +307,7 @@
 								.addEventListener(
 										"click",
 										function() {
+
 											// 날짜 유효성검사 스크립트 시작
 											if (io_date.value.length > 10) {
 												alert("쩔쩔이는 이 프로그램을 21세기에 만들었어요...\n본인이 100세기 이후에 살고있다면 이 앱에서 갈아타세요 ><")
