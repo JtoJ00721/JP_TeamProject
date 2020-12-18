@@ -115,14 +115,14 @@
 		}, 69);
 		// 헤더와 네비바 변화 스크립트 끝
 		
-		// 거래처 수정창으로 환상의 여★행 스크립트 시작
+		// 거래처 상세정보창으로 환상의 여★행 스크립트 시작
 		document.querySelector("table#dept_table").addEventListener("click", function(e){
 			let id = e.target.closest("TR").dataset.id
-			if(confirm("거래처코드 : " + id + " 데이터를 수정할래요?")){
-				document.location.href = "${rootPath}/dept/update?d_code=" + id;	
+			if(confirm("거래처코드 : " + id + " 데이터를 한눈에 보고 조작할래요?")){
+				document.location.href = "${rootPath}/dept/detail?id=" + id;	
 			}
 		})
-		// 거래처 수정창으로 환상의 여★행 스크립트 끝
+		// 거래처 상세정보창으로 환상의 여★행 스크립트 끝
 
 		// 거래처 추가로 이동 스크립트 시작
 		let to_insert = document.querySelector("#to_dept_input");

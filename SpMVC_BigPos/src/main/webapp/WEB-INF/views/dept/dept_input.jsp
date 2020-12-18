@@ -7,10 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>새 거래처 추가</title>
+<style>
+	.hidden {
+		display: none;
+	}
+</style>
 </head>
 <body>
 	<h1>!따끈한 거래처정보!</h1>
 	<form id="dept_form" method="POST">
+		<div class="hidden">
+			<label>거래처 코드(필수) : </label><input id="d_code" name="d_code"
+				value="${ID}" />
+		</div>
 		<div>
 			<label>거래처명(필수) : </label><input id="d_name" name="d_name"
 				value="${DEPTVO.d_name}" />
@@ -36,7 +45,7 @@
 				value="${DEPTVO.d_product}" />
 		</div>
 		<div id="dept_form_btn">
-			<button id="dept_insert" type="button">거래처 저장하기</button>
+			<button id="dept_insert" type="button">거래처정보 저장하기</button>
 			<button id="to_dept_list" type="button">입력 관두기</button>
 		</div>
 	</form>
@@ -122,7 +131,6 @@
 				return false;
 			}
 			// 주요품목 유효성검사 끝
-
 			form.submit();
 		});
 		// 저장버튼 클릭시 유효성 검사와 submit 스크립트 끝

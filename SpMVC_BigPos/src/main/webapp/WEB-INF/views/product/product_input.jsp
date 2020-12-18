@@ -82,7 +82,7 @@
 			<label>판매단가(필수) : </label><input id="oprice" name="p_oprice"  value="${PROVO.p_oprice}"/>
 		</div>
 		<div id="pro_form_btn">
-			<button type="button" id="pro_insert">상품 저장하기</button>
+			<button type="button" id="pro_insert">상품정보 저장하기</button>
 			<button type="button" id="to_pro_list">입력 관두기</button>
 		</div>
 	</form>

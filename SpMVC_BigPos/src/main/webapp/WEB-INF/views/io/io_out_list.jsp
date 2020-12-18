@@ -25,8 +25,8 @@
 	margin: 30px 0px;
 }
 
-#out_table thead{
-	border:3px dashed gray;
+#out_table thead {
+	border: 3px dashed gray;
 	border-bottom: none;
 }
 
@@ -40,7 +40,7 @@
 </style>
 </head>
 <body>
-		<section id="out_holder">
+	<section id="out_holder">
 		<table id="out_table">
 			<caption>최근 매출</caption>
 			<thead>
@@ -67,6 +67,9 @@
 			</tbody>
 		</table>
 	</section>
+	<div>
+		<button id="to_io_input" type="button">새로운 매입매출 기록</button>
+	</div>
 </body>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {

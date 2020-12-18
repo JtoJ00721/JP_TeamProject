@@ -23,7 +23,7 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productServV1")
 	private ProductService proService;
-	
+
 	@Autowired
 	@Qualifier("deptServV1")
 	private DeptService deptService;
@@ -39,7 +39,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String input(Model model) {
-		
+
 		List<DeptVO> deptList = deptService.selectAll();
 		model.addAttribute("DEPTLIST", deptList);
 		return "product/product_input";
@@ -47,24 +47,29 @@ public class ProductController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.POST)
 	public String input(ProductVO vo) {
-		
+
 		proService.insert(vo);
 		return "redirect:/product/list";
 	}
 
-	@RequestMapping(value = "detail")
-	public String detail(Model model) {
+	@RequestMapping(value = "/detail")
+	public String detail(Model model, @ModelAttribute("id") String id) {
+
+		ProductVO vo = proService.findById(id);
+		model.addAttribute("PROVO", vo);
 		return "product/product_detail";
 	}
 
 	@RequestMapping(value = "/delete")
-	public String delete() {
+	public String delete(@ModelAttribute("id") String id) {
+		
+		proService.delete(id);
 		return "redirect:/product/list";
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(Model model, @RequestParam("id") String id, @ModelAttribute("PROVO") ProductVO vo) {
-		
+
 		vo = proService.findById(id);
 		model.addAttribute("PROVO", vo);
 		List<DeptVO> deptList = deptService.selectAll();

@@ -121,7 +121,7 @@
 						}, 69);
 						// 헤더와 네비 효과 스크립트 끝
 
-						// 상품정보 수정창으로 이동 스크립트 시작
+						// 상품정보 상세보기로 이동 스크립트 시작
 						document
 								.querySelector("table#product_table")
 								.addEventListener(
@@ -129,12 +129,12 @@
 										function(e) {
 											let id = e.target.closest("TR").dataset.id;
 											if (confirm("상품코드 : " + id
-													+ " 의 정보를 수정할래요?")) {
-												document.location.href = "${rootPath}/product/update?id="
+													+ " 의 정보를 자세히 보고 조작하실래요?")) {
+												document.location.href = "${rootPath}/product/detail?id="
 														+ id;
 											}
 										})
-						// 상품정보 수정창으로 이동 스크립트 끝
+						// 상품정보 상세보기로 이동 스크립트 끝
 
 						// 새로운 상품추가로 이동 스크립트 시작
 						let to_insert = document
