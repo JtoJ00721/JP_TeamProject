@@ -50,7 +50,7 @@ nav button:hover {
 								.querySelector("nav button:nth-child(2)");
 						io.addEventListener("click", function() {
 							// alert("클릭릭")
-							document.location.href = "${rootPath}/io/list/in";
+							document.location.href = "${rootPath}/io/list";
 						})
 
 						let dept = document

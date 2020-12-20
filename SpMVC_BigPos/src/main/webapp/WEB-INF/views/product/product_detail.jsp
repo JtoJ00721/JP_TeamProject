@@ -33,7 +33,7 @@
 	document.addEventListener("DOMContentLoaded", function() {
 		
 		let id = document.querySelector("li:first-child").innerText;
-		document.querySelector("#det_btn_box button:first-child")
+		document.querySelector("#det_pro_btn_box button:first-child")
 				.addEventListener("click", function() {
 					if(confirm("이 상품정보를 수정하실래요?")){
 						document.location.href = "${rootPath}/product/update?id=" + id; 

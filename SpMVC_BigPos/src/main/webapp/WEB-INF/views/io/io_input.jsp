@@ -89,9 +89,9 @@
 </head>
 <body>
 	<h1>여기는 매입매출 입력창이지롱</h1>
-	<form id="io_form">
+	<form id="io_form" method="POST">
 		<div>
-			<label>거래날짜(필수) : </label><input id="io_date" type="date"
+			<label>거래일(필수) : </label><input id="io_date" type="date"
 				name="io_date" value="${DATE}" />
 		</div>
 		<div>
@@ -99,41 +99,42 @@
 				name="io_time" value="${TIME}" />
 		</div>
 		<div>
-			<label>거래처코드(필수) : </label>
+			<label id="dcode">거래처코드(필수) : </label>
 			<button id="d_select" type="button">거래처 선택</button>
-			<input class="hidden" id="io_dcode" name="io_dcode" />
+			<input class="hidden" id="io_dcode" name="io_dcode" value="${IOVO.io_dcode}" />
 		</div>
 		<div>
 			<label>거래구분(필수) : </label>
 			<button id="in_or_out" type="button">이 버튼을 클릭하지 않고 이대로 놔두면
 				매입으로 기록됩니다</button>
-			<input class="hidden" id="io_inout" name="io_inout" />
+			<input class="hidden" id="io_inout" name="io_inout" value="${IOVO.io_inout}" />
 		</div>
 		<div>
-			<label>상품코드(필수) : </label>
+			<label id="pcode">상품코드(필수) : </label>
 			<button id="p_select" type="button">상품선택</button>
-			<input class="hidden" id="io_pcode" name="io_pcode" />
+			<input class="hidden" id="io_pcode" name="io_pcode" value="${IOVO.io_pcode}" />
 		</div>
 		<div>
-			<label id="tex_show">과세여부(필수) :</label><input class="hidden"
-				id="io_vat" name="io_vat" />
+			<label id="tax_show">과세여부(필수) :</label><input class="hidden"
+				id="io_vat" name="io_vat" value="${IOVO.io_vat}" />
 		</div>
 		<div>
 			<label>수량(필수) : </label><input type="number" min="1" id="io_qty"
-				name="io_qty" />
+				name="io_qty" value="${IOVO.io_qty}" />
 		</div>
 		<div>
 			<label>단가(필수) : </label><input type="number" min="0" id="io_price"
-				name="io_price" value="" />
+				name="io_price" value="${IOVO.io_price}" />
 		</div>
 		<div class="hidden">
-			<label>금액 : </label><input id="io_amt" name="io_amt" />
+			<label>금액 : </label><input id="io_amt" name="io_amt" value="${IOVO.io_amt}" />
 		</div>
 		<div class="hidden">
-			<label>세액 : </label><input id="io_tax" name="io_tax" />
+			<label>세액 : </label><input id="io_tax" name="io_tax" value="${IOVO.io_tax}" />
 		</div>
 		<div class="hidden">
-			<label>합계 : </label><input id="io_total" name="io_total" />
+			<label>합계 : </label><input id="io_total" name="io_total"
+				value="${IOVO.io_total}" />
 		</div>
 		<div id="io_input_btn_box">
 			<button type="button">매입매출 정보 저장</button>
@@ -192,7 +193,8 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${PROLIST}" var="items" varStatus="i">
-					<tr class="pro_item" data-id="${items.p_code}">
+					<tr class="pro_item" data-id="${items.p_code}"
+						data-texing="${items.p_vat}">
 						<td>${items.p_code}</td>
 						<td>${items.p_name}</td>
 						<td>${items.p_item}</td>
@@ -220,12 +222,12 @@
 								.addEventListener(
 										"click",
 										function() {
-											document.location.href = "${rootPath}/io/list/in";
+											document.location.href = "${rootPath}/io/list";
 										})
 						// 리스트로 버튼 스크립트 끝
 
 						// 선택된 tag 변수들 시작
-						let io_form = document.querySelector("io_form");
+						let io_form = document.querySelector("#io_form");
 						let io_seq = document.querySelector("#io_seq");
 						let io_date = document.querySelector("#io_date");
 						let io_time = document.querySelector("#io_time");
@@ -237,7 +239,7 @@
 						let io_price = document.querySelector("#io_price");
 						let io_amt = document.querySelector("#io_amt");
 						let io_tax = document.querySelector("#io_tax");
-						let tex_show = document.querySelector("#tex_show")
+						let tax_show = document.querySelector("#tax_show")
 						let io_total = document.querySelector("#io_total");
 
 						let d_select = document.querySelector("#d_select");
@@ -250,17 +252,42 @@
 						let in_or_out = document.querySelector("#in_or_out");
 						// 선택된 tag 변수들 끝
 
-						io_vat.value = 1; // 과세여부 기초설정
 						io_inout.value = 1; // 매입매출 기초설정  
+						io_tax.value = 0; // 세액 기초설정
+						
+						// 업데이트시 디스플레이 설정
+						document.querySelector("#dcode").innerText = "거래처코드 : " + io_dcode.value;
+						document.querySelector("#pcode").innerText = "상품코드 : " + io_pcode.value;
+						
+						if(io_inout.value = 1) {
+							document.querySelector("#in_or_out").innerText = "이 버튼을 클릭하지 않고 이대로 놔두면 매입으로 기록됩니다"
+						} else if(io_inout.value = 2) {
+							document.querySelector("#in_or_out").innerText = "이 버튼을 클릭하지 않고 이대로 놔두면 매출로 기록됩니다"
+						} else {
+							alert("스크립트 오류! 쩔쩔이를 비난하세요 ><")
+							document.location.href = "${rootPath}/javascriptiswrong"
+							return false;
+						}
+						
+						if(io_vat.value == 1) {
+							tax_show.innerText = "과세여부 : 과세상품";
+						} else if(io_vat.value == 2) {
+							tax_show.innerText = "과세여부 : 면세상품";
+						} else {
+							alert("스크립트 변수설정이 개판입니다... 쩔쩔이에게 메일로 알려주세요 ><");
+						}
+						// 업데이트시 디스플레이 설정
 
 						// 거래처 팝업 스크립트 시작
 						d_select.addEventListener("click", function() {
+							product_pop.style.display = "none";
 							dept_pop.style.display = "inline-block";
 						})
 						// 거래처 팝업 스크립트 끝
 
 						// 상풉 팝업 스크립트 시작
 						p_select.addEventListener("click", function() {
+							dept_pop.style.display = "none";
 							product_pop.style.display = "inline-block";
 						})
 						// 상풉 팝업 스크립트 끝
@@ -277,9 +304,46 @@
 						// 팝업 닫기 스크립트 끝
 
 						//거래처 선택 스크립트 시작
+						document
+								.querySelector("table#io_dept_table")
+								.addEventListener(
+										"click",
+										function(e) {
+											let id = e.target.closest("TR").dataset.id;
+
+											document.querySelector("#dcode").innerText = "거래처코드 : "
+													+ id;
+											io_dcode.value = id;
+											dept_pop.style.display = "none";
+										})
 						//거래처 선택 스크립트 끝
 
 						// 상품선택 스크립트 시작
+						document
+								.querySelector("table#io_product_table")
+								.addEventListener(
+										"click",
+										function(e) {
+											let id = e.target.closest("TR").dataset.id;
+											let texing = e.target.closest("TR").dataset.texing;
+
+											document.querySelector("#pcode").innerText = "상품코드 : "
+													+ id;
+											io_pcode.value = id;
+
+											io_vat.value = texing;
+
+											if (io_vat.value == 1) {
+												tax_show.innerText = "과세여부 : 과세상품";
+											} else if (io_vat.value == 2) {
+												tax_show.innerText = "과세여부 : 면세상품";
+											} else {
+												alert("쩔쩔이가 변수 설정을 멍청하게 해놨어요... 메일로 응징합시다 ><");
+												document.location.href = "${rootPath}/javascriptiswrong"
+												return false
+											}
+											product_pop.style.display = "none";
+										})
 						// 상품선택 스크립트 끝
 
 						// 매입매출 거래구분 토글 스크립트 시작
@@ -357,17 +421,21 @@
 											}
 											// 세금계산 스크립트 끝
 
+											// 합계 계산 스크립트 시작
+											io_total.value = Math
+													.round(Number(io_amt.value)
+															+ Number(io_tax.value));
+											// 합계 계산 스크립트 끝
+
 											// 최종 확인과 submit 스크립트 시작
 											if (confirm("결재금액 : "
 													+ io_price.value
-													* io_qty.value
-													+ "\n세액 : "
+													* io_qty.value + "\n세액 : "
 													+ io_tax.value
 													+ "\n입출합계 : "
-													+ (Math.round(io_amt.value
-															+ io_tax.value))
+													+ io_total.value
 													+ "\n저장하시겠습니까?")) {
-												//io_form.submit();
+												io_form.submit();
 											}
 											// 최종 확인과 submit 스크립트 끝
 

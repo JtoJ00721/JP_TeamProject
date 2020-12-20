@@ -36,11 +36,8 @@ html, body {
 
 	<div id="body_contents">
 		<c:choose>
-			<c:when test="${BODY == 'IO_IN_LIST'}">
-				<%@ include file="/WEB-INF/views/io/io_in_list.jsp"%>
-			</c:when>
-			<c:when test="${BODY == 'IO_OUT_LIST'}">
-				<%@ include file="/WEB-INF/views/io/io_out_list.jsp"%>
+			<c:when test="${BODY == 'IOLIST'}">
+				<%@ include file="/WEB-INF/views/io/iolist.jsp"%>
 			</c:when>
 			<c:when test="${BODY == 'PRODUCT_LIST'}">
 				<%@ include file="/WEB-INF/views/product/product_list.jsp"%>
