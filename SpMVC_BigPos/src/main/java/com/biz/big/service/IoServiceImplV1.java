@@ -25,8 +25,7 @@ public class IoServiceImplV1 implements IoService {
 	@Override
 	public IoVO findById(Long id) {
 
-		ioDao.findById(id);
-		return null;
+		return ioDao.findById(id);
 	}
 
 	@Override

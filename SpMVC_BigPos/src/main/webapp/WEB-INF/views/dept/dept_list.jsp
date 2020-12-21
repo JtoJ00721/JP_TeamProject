@@ -41,7 +41,6 @@
 #dept_table tbody tr {
 	transition: all 0.3s;
 	cursor: pointer;
-	
 }
 
 #dept_table tbody tr:hover {
@@ -114,14 +113,20 @@
 			Fantasy.style.borderRadius = "0px 0px 0px 15px";
 		}, 69);
 		// 헤더와 네비바 변화 스크립트 끝
-		
+
 		// 거래처 상세정보창으로 환상의 여★행 스크립트 시작
-		document.querySelector("table#dept_table").addEventListener("click", function(e){
-			let id = e.target.closest("TR").dataset.id
-			if(confirm("거래처코드 : " + id + " 데이터를 한눈에 보고 조작할래요?")){
-				document.location.href = "${rootPath}/dept/detail?id=" + id;	
-			}
-		})
+		document.querySelector("table#dept_table").addEventListener(
+				"click",
+				function(e) {
+					let id = e.target.closest("TR").dataset.id
+					if (id === undefined) {
+						return false;
+					}
+					if (confirm("거래처코드 : " + id + " 데이터를 한눈에 보고 조작할래요?")) {
+						document.location.href = "${rootPath}/dept/detail?id="
+								+ id;
+					}
+				})
 		// 거래처 상세정보창으로 환상의 여★행 스크립트 끝
 
 		// 거래처 추가로 이동 스크립트 시작

@@ -128,6 +128,9 @@
 										"click",
 										function(e) {
 											let id = e.target.closest("TR").dataset.id;
+											if (id === undefined || id === "") {
+												return false;
+											}
 											if (confirm("상품코드 : " + id
 													+ " 의 정보를 자세히 보고 조작하실래요?")) {
 												document.location.href = "${rootPath}/product/detail?id="

@@ -75,7 +75,7 @@ public class IoController {
 	}
 
 	@RequestMapping(value = "/detail")
-	public String detail(@RequestParam("id") Long id, Model model) {
+	public String detail(@ModelAttribute("id") Long id, Model model) {
 
 		IoVO vo = ioService.findById(id);
 		model.addAttribute("IOVO", vo);

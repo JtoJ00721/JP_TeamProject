@@ -8,47 +8,95 @@
 <meta charset="UTF-8">
 <title>새 거래처 추가</title>
 <style>
-	.hidden {
-		display: none;
-	}
+.hidden {
+	display: none;
+}
+
+body {
+	text-align: center;
+}
+
+fieldset {
+	display: inline-block;
+	border: 5px solid black;
+	border-radius: 10px;
+	width: 700px;
+	padding: 20px;
+	text-align: left;
+}
+
+legend {
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+form div {
+	margin: 10px 0px;
+	font-size: 20px;
+}
+
+form input {
+	padding: 5px;
+}
+
+#dept_form_btn button {
+	padding: 10px;
+	color: white;
+	background-color: navy;
+	border: none;
+	outline: none;
+	border-radius: 10px;
+	font-weight: bold;
+	transition: all 0.5s;
+}
+
+#dept_form_btn button:first-child:hover {
+	background-color: cornflowerblue;
+}
+
+#dept_form_btn button:nth-child(2):hover {
+	background-color: yellowgreen;
+}
 </style>
 </head>
 <body>
-	<h1>!따끈한 거래처정보!</h1>
-	<form id="dept_form" method="POST">
-		<div class="hidden">
-			<label>거래처 코드(필수) : </label><input id="d_code" name="d_code"
-				value="${ID}" />
-		</div>
-		<div>
-			<label>거래처명(필수) : </label><input id="d_name" name="d_name"
-				value="${DEPTVO.d_name}" />
-		</div>
-		<div>
-			<label>사업자번호(필수) : </label><input id="d_sid" name="d_sid"
-				value="${DEPTVO.d_sid}" />
-		</div>
-		<div>
-			<label>대표자명(필수) : </label><input id="d_ceo" name="d_ceo"
-				value="${DEPTVO.d_ceo}" />
-		</div>
-		<div>
-			<label>대표전화(필수) : </label><input id="d_tel" name="d_tel"
-				value="${DEPTVO.d_tel}" />
-		</div>
-		<div>
-			<label>주소 : </label><input id="d_addr" name="d_addr"
-				value="${DEPTVO.d_addr}" />
-		</div>
-		<div>
-			<label>주요품목 : </label><input id="d_product" name="d_product"
-				value="${DEPTVO.d_product}" />
-		</div>
-		<div id="dept_form_btn">
-			<button id="dept_insert" type="button">거래처정보 저장하기</button>
-			<button id="to_dept_list" type="button">입력 관두기</button>
-		</div>
-	</form>
+	<fieldset>
+		<legend>!따끈한 거래처정보!</legend>
+		<form id="dept_form" method="POST">
+			<div class="hidden">
+				<label>거래처 코드(필수) : </label><input id="d_code" name="d_code"
+					value="${ID}" />
+			</div>
+			<div>
+				<label>거래처명(필수) : </label><input id="d_name" name="d_name"
+					value="${DEPTVO.d_name}" />
+			</div>
+			<div>
+				<label>사업자번호(필수) : </label><input id="d_sid" name="d_sid"
+					value="${DEPTVO.d_sid}" />
+			</div>
+			<div>
+				<label>대표자명(필수) : </label><input id="d_ceo" name="d_ceo"
+					value="${DEPTVO.d_ceo}" />
+			</div>
+			<div>
+				<label>대표전화(필수) : </label><input id="d_tel" name="d_tel"
+					value="${DEPTVO.d_tel}" />
+			</div>
+			<div>
+				<label>주소 : </label><input id="d_addr" name="d_addr"
+					value="${DEPTVO.d_addr}" />
+			</div>
+			<div>
+				<label>주요품목 : </label><input id="d_product" name="d_product"
+					value="${DEPTVO.d_product}" />
+			</div>
+			<div id="dept_form_btn">
+				<button id="dept_insert" type="button">거래처정보 저장하기</button>
+				<button id="to_dept_list" type="button">입력 관두기</button>
+			</div>
+		</form>
+	</fieldset>
 </body>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {

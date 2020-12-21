@@ -26,13 +26,9 @@ header {
 
 <header>
 	<c:choose>
-		<c:when test="${BODY == 'IO_IN_LIST'}">
-			<h1>여기는 매입리스트 이지롱</h1>
+		<c:when test="${BODY == 'IOLIST'}">
+			<h1>여기는 매입매출리스트 이지롱</h1>
 			<p>우리가 사들인 물건과 금액 리스트</p>
-		</c:when>
-		<c:when test="${BODY == 'IO_OUT_LIST'}">
-			<h1>여기는 매출리스트 이지롱</h1>
-			<p>우리가 팔아치운 물건과 금액 리스트</p>
 		</c:when>
 		<c:when test="${BODY == 'PRODUCT_LIST'}">
 			<h1>여기는 상품리스트 이지롱</h1>
@@ -55,7 +51,10 @@ header {
 	document.addEventListener("DOMContentLoaded", function() {
 		setTimeout(function() {
 			let header = document.querySelector("header");
+			let easter = document.querySelector("#home_easter");
+			
 			header.style.backgroundColor = "black";
+			easter.style.color = "black"
 		}, 69);
 	})
 </script>

@@ -12,6 +12,33 @@
 	display: none;
 }
 
+body {
+	text-align: center;
+}
+
+fieldset {
+	display: inline-block;
+	border: 5px solid black;
+	border-radius: 10px;
+	width: 700px;
+	padding: 20px;
+	text-align: left;
+}
+
+legend {
+	font-size: 30px;
+	font-weight: bolder;
+}
+
+form div {
+	margin: 10px 0px;
+	font-size: 20px;
+}
+
+form input {
+	padding: 5px;
+}
+
 #product_pop {
 	display: none;
 	width: 700px;
@@ -47,76 +74,111 @@
 #pro_dept_table tbody tr:hover {
 	background-color: #ddd
 }
+
+#pro_form_btn button {
+	padding: 10px;
+	color: white;
+	background-color: navy;
+	border: none;
+	outline: none;
+	border-radius: 10px;
+	font-weight: bold;
+	transition: all 0.5s;
+}
+
+#pro_form_btn button:first-child:hover {
+	background-color: cornflowerblue;
+}
+
+#pro_form_btn button:nth-child(2):hover {
+	background-color: yellowgreen;
+}
+
+#close_pop {
+	background-color: crimson;
+	padding: 5px;
+	color: white;
+}
 </style>
 </head>
 <body>
-	<h1>!신선한 상품정보!</h1>
-	<form id="pro_form" method="POST">
-		<div>
-			<label>상품코드(필수) : </label><input id="p_code" name="p_code" value="${PROVO.p_code}"/>
-		</div>
-		<div>
-			<label>상품명(필수) : </label><input id="p_name" name="p_name" value="${PROVO.p_name}" />
-		</div>
-		<div>
-			<label>품목 : </label><input id="p_item" name="p_item" value="${PROVO.p_item}" />
-		</div>
-		<div>
-			<label>제조원 : </label><input id="p_menuf" name="p_menuf" value="${PROVO.p_menuf}" />
-		</div>
-		<div>
-			<label>주매입처 : </label><span id="is_select">아직 선택되지 않음</span><input
-				class="hidden" id="p_dcode" name="p_dcode" value="${PROVO.p_dcode}" />
-			<button id="find_dept" type="button">목록에서 찾기</button>
-		</div>
-		<div>
-			<label class="hidden">과세구분(필수) : </label><input class="hidden"
-				id="p_vat" name="p_vat"/>
-			<button id="is_tex" type="button">여기를 클릭하지 않고 이대로 놔두면 과세
-				상품으로 저장</button>
-		</div>
-		<div>
-			<label>매입단가(필수) : </label><input id="iprice" name="p_iprice"  value="${PROVO.p_iprice}"/>
-		</div>
-		<div>
-			<label>판매단가(필수) : </label><input id="oprice" name="p_oprice"  value="${PROVO.p_oprice}"/>
-		</div>
-		<div id="pro_form_btn">
-			<button type="button" id="pro_insert">상품정보 저장하기</button>
-			<button type="button" id="to_pro_list">입력 관두기</button>
-		</div>
-	</form>
+	<fieldset>
+		<legend>!신선한 상품정보!</legend>
+		<form id="pro_form" method="POST">
+			<div>
+				<label>상품코드(필수) : </label><input id="p_code" name="p_code"
+					value="${PROVO.p_code}" />
+			</div>
+			<div>
+				<label>상품명(필수) : </label><input id="p_name" name="p_name"
+					value="${PROVO.p_name}" />
+			</div>
+			<div>
+				<label>품목 : </label><input id="p_item" name="p_item"
+					value="${PROVO.p_item}" />
+			</div>
+			<div>
+				<label>제조원 : </label><input id="p_menuf" name="p_menuf"
+					value="${PROVO.p_menuf}" />
+			</div>
+			<div>
+				<label>주매입처 : </label><span id="is_select">아직 선택되지 않음</span><input
+					class="hidden" id="p_dcode" name="p_dcode" value="${PROVO.p_dcode}" />
+				<button id="find_dept" type="button">목록에서 찾기</button>
+			</div>
+			<div>
+				<label class="hidden">과세구분(필수) : </label><input class="hidden"
+					id="p_vat" name="p_vat" />
+				<button id="is_tex" type="button">여기를 클릭하지 않고 이대로 놔두면 과세
+					상품으로 저장</button>
+			</div>
+			<div>
+				<label>매입단가(필수) : </label><input id="iprice" name="p_iprice"
+					value="${PROVO.p_iprice}" />
+			</div>
+			<div>
+				<label>판매단가(필수) : </label><input id="oprice" name="p_oprice"
+					value="${PROVO.p_oprice}" />
+			</div>
+			<div id="pro_form_btn">
+				<button type="button" id="pro_insert">상품정보 저장하기</button>
+				<button type="button" id="to_pro_list">입력 관두기</button>
+			</div>
+		</form>
+	</fieldset>
 
-	<div id="product_pop">
-		<button id="close_pop" type="button">나가기</button>
-		<div>
-			<table id="pro_dept_table">
-				<caption>거래처 선택</caption>
-				<thead>
-					<tr>
-						<th>거래처코드</th>
-						<th>거래처명</th>
-						<th>사업자번호</th>
-						<th>대표자명</th>
-						<th>대표전화</th>
-						<th>주소</th>
-						<th>주요품목</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${DEPTLIST}" var="items" varStatus="i">
-						<tr class="dept_item" data-id="${items.d_code}">
-							<td>${items.d_code}</td>
-							<td>${items.d_name}</td>
-							<td>${items.d_sid}</td>
-							<td>${items.d_ceo}</td>
-							<td>${items.d_tel}</td>
-							<td>${items.d_addr}</td>
-							<td>${items.d_product}</td>
+	<div>
+		<div id="product_pop">
+			<button id="close_pop" type="button">나가기</button>
+			<div>
+				<table id="pro_dept_table">
+					<caption>거래처 선택</caption>
+					<thead>
+						<tr>
+							<th>거래처코드</th>
+							<th>거래처명</th>
+							<th>사업자번호</th>
+							<th>대표자명</th>
+							<th>대표전화</th>
+							<th>주소</th>
+							<th>주요품목</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach items="${DEPTLIST}" var="items" varStatus="i">
+							<tr class="dept_item" data-id="${items.d_code}">
+								<td>${items.d_code}</td>
+								<td>${items.d_name}</td>
+								<td>${items.d_sid}</td>
+								<td>${items.d_ceo}</td>
+								<td>${items.d_tel}</td>
+								<td>${items.d_addr}</td>
+								<td>${items.d_product}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

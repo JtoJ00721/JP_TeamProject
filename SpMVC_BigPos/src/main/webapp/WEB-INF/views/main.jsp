@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>위 네비게이션에서 내용을 구경하거나 끄적이고 싶은 리스트를 선택해 주세요</h1>
-	<h3>이 사이트의 모든 안내와 경고메시지는 우리 농농이가 합니다</h3>
+	<h3>이 사이트의 모든 안내와 이스터에그 생성과 경고메시지는 우리 농농이가 합니다</h3>
 </body>
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
