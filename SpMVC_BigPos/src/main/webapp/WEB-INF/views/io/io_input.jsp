@@ -426,6 +426,10 @@ form input {
 											} else if (inout_toggle == -7) {
 												in_or_out.innerText = "이 버튼을 클릭하지 않고 이대로 놔두면 매출로 기록됩니다"
 												io_inout.value = 2;
+											} else {
+												alert("스크립트 변수설정 폭★8 쩔쩔이한테 고치라고 하세요 ><");
+												document.location.href = "${rootPath}/javascriptiswrong"
+												return false;
 											}
 										})
 						// 매입매출 거래구분 토글 스크립트 끝
